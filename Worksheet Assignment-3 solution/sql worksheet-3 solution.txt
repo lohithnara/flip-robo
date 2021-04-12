@@ -1,0 +1,68 @@
+Ans-1)
+
+mysql> CREATE TABLE Customers (
+    -> CustomerNumber int primary key,
+    -> customerName varchar(20),
+    -> contactLastName varchar(20),
+    -> contactFirstName varchar(20),
+    -> Phone int,
+    -> addressLine1 varchar(20),
+    -> addressLine2 varchar(20),
+    -> city varchar(20),
+    -> state varchar(20),
+    -> postalcode int,
+    -> country varchar(20),
+    -> SalesRepEmployeeNumber int,
+    -> creditLimit int,
+    -> foreign key (SalesRepEmployeeNumber) references employees(employeeNumber)
+    -> );
+
+Ans-2)
+
+mysql> CREATE TABLE Orders (
+    -> orderNumber int primary key,
+    -> orderDate date,
+    -> requiredDate date,
+    -> shippedDate date,
+    -> status varchar(255),
+    -> comments varchar(255),
+    -> customerNumber int,
+    -> foreign key (CustomerNumber) references Customers(CustomerNumber)
+    -> );
+
+Ans-3)
+mysql> select * from Orders;
+
+Ans-4)
+mysql> select comments from Orders;
+
+Ans-5)
+mysql> select orderDate, count(orderNumber) as TOTAL_NUMBER_OF_ORDERS from Orders GROUP BY orderDate;
+
+Ans-6)
+mysql> select employeeNumber, lastName, firstName from employees;
+
+Ans-7)
+mysql> select a.orderNumber, b.customerName from Orders a, Customers b where a.customerNumber=b.CustomerNumber;
+
+Ans-8)
+
+Ans-9)
+mysql> select paymentDate as Date, sum(amount) from payments GROUP BY paymentDate;
+
+Ans-10)
+mysql> select productName, MSRP, productDescription from products;
+
+Ans-11)
+
+Ans-12)
+mysql> select a.city, count(b.orderNumber) as NUMBER_OF_ORDERS from Customers a, Orders b where a.customerNumber = b.customerNumber group by a.city order by NUMBER_OF_ORDERS desc;
+
+Ans-13)
+mysql> select state, count(customerNumber) as NUMBER_OF_Customers from Customers group by state order by NUMBER_OF_Customers desc;
+
+Ans-14)
+
+Ans-15)
+
+
